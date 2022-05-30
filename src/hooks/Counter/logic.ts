@@ -15,13 +15,34 @@ function reducer(state: ICount, action: IAction) {
 }
 
 function useLogic() {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(() => {
+        const oldCount = localStorage.getItem("count");
+        if (oldCount !== null) {
+            return Number(oldCount);
+        }
+        localStorage.setItem("count", '0');
+        return 0;
+    });
+
+    const saveInStorage = (callbackOrNumber: (v: number) => number | number) => {
+        if (typeof callbackOrNumber == 'number') {
+            const newCount = callbackOrNumber as number;
+            localStorage.setItem("count", newCount.toString());
+            setCount(callbackOrNumber);
+        } else {
+            setCount((oldCount) => {
+                const newCount = callbackOrNumber(oldCount);
+                localStorage.setItem("count", newCount.toString());
+                return newCount;
+            });
+        }
+    }
 
     const [counterState, counterDispatch] = useReducer(reducer, initialState);
 
     return {
         count,
-        setCount,
+        setCount: saveInStorage,
         counterState,
         counterDispatch,
     }
