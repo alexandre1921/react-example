@@ -73,7 +73,7 @@ Setup your environment variables
 $ yarn dev
 ```
 
-### Success 🚀. The app is running in 0.0.0.0:5000.
+### Success 🚀. The app is running in 0.0.0.0:3000.
 
 ```bash
 vite v2.9.5 dev server running at:
