@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useIndexedDB } from 'react-indexed-db';
 import firebase, { auth } from '../../utils/firebase';
 import { ILoginPayload, IState, IUseLogicReturn } from './types';
 
@@ -35,10 +36,25 @@ const onAuthStateChanged = (callback: (user: firebase.User | null) => void) => {
 function useLogic(): IUseLogicReturn {
   const [authState, setAuthState] = useState<IState>(initialState);
 
+  const db = useIndexedDB('people');
+
+  useEffect(() => {
+    db.getAll().then(people => {
+      console.log(people);
+    });
+  }, []);
+
   useEffect(() => {
     setAuthState(oldAuthState => {
       if (!oldAuthState.listener) {
         const listener = onAuthStateChanged(user => {
+          if (user) {
+            db.getAll().then((people) => {
+              if (people.length == 0) {
+                db.add({ name: user?.displayName, email: user?.email });
+              }
+            });
+          }
           setAuthState(oldState => ({
             ...oldState,
             isUserDataPresent: true,
@@ -76,6 +92,7 @@ function useLogic(): IUseLogicReturn {
   };
 
   const signOut = (): void => {
+    db.clear();
     auth.signOut();
     setAuthState(initialState);
   };
