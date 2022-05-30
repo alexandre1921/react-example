@@ -1,9 +1,9 @@
 {
-    "apiKey": "AIzaSyBI7tearwMUHeksLrPjHn8bpknh_sEvKXg",
-    "authDomain": "fir-example-sudotec.firebaseapp.com",
-    "projectId": "fir-example-sudotec",
-    "storageBucket": "fir-example-sudotec.appspot.com",
-    "messagingSenderId": "418321268579",
-    "appId": "1:418321268579:web:9194c1e4af37c2685cdd56",
-    "measurementId": "G-5N1K03ZJ18"
+    "apiKey": "",
+    "authDomain": "",
+    "projectId": "",
+    "storageBucket": "",
+    "messagingSenderId": "",
+    "appId": "",
+    "measurementId": ""
 }
