@@ -1,15 +1,15 @@
 import VehicleRepository from '../../repositories/firestore/vehicle';
 
 export interface DestroyVehicleDTO {
-  id: string;
+    id: string;
 }
 
 class DestroyVehicleController {
-  public execute({ id }: DestroyVehicleDTO): Promise<boolean> {
-    const vehicleRepository = new VehicleRepository();
+    public execute({ id }: DestroyVehicleDTO): Promise<boolean> {
+        const vehicleRepository = new VehicleRepository();
 
-    return vehicleRepository.delete(id);
-  }
+        return vehicleRepository.delete(id);
+    }
 }
 
 export { DestroyVehicleController };

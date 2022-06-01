@@ -1,40 +1,34 @@
-import { createContext, useContext } from 'react';
+import { useMemo, createContext, useContext } from 'react';
 
 import useLogic from './logic';
 import { Props, CounterContextData } from './types';
 
 const CounterContext = createContext<CounterContextData>({} as CounterContextData);
 
-const CounterProvider: React.FC<Props> = ({ children }: Props) => {
-  const {
-    count,
-    setCount,
-    counterDispatch,
-    counterState,
-  } = useLogic();
+function CounterProvider({ children }: Props) {
+    const { count, setCount, counterDispatch, counterState } = useLogic();
 
-  return (
-    <CounterContext.Provider
-      value={{
-        count,
-        setCount,
-        counterDispatch,
-        counterState
-      }}
-    >
-      {children}
-    </CounterContext.Provider>
-  );
-};
+    const contextValue = useMemo(
+        () => ({
+            count,
+            setCount,
+            counterDispatch,
+            counterState,
+        }),
+        [count, counterDispatch, counterState, setCount],
+    );
+
+    return <CounterContext.Provider value={contextValue}>{children}</CounterContext.Provider>;
+}
 
 function useCounter() {
-  const context = useContext(CounterContext);
+    const context = useContext(CounterContext);
 
-  if (!context) {
-    throw new Error('useCounter must be used within an CounterProvider');
-  }
+    if (!context) {
+        throw new Error('useCounter must be used within an CounterProvider');
+    }
 
-  return context;
+    return context;
 }
 
 export { CounterProvider, useCounter };

@@ -1,7 +1,7 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 interface InfoProps {
-  bold?: boolean;
+    bold?: boolean;
 }
 
 export const Info = styled.p<InfoProps>`
@@ -14,9 +14,11 @@ export const Info = styled.p<InfoProps>`
     box-sizing: border-box;
     margin-top: 4px;
 
-    ${props => props.bold && css`
-        font-weight: bold;
-    `};
+    ${props =>
+        props.bold &&
+        css`
+            font-weight: bold;
+        `};
 `;
 
 export const Container = styled.div`
@@ -25,7 +27,7 @@ export const Container = styled.div`
 
     border-radius: 5px;
 
-    border: 1px solid #eee!important;
+    border: 1px solid #eee !important;
 
     img {
         width: 100%;

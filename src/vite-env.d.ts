@@ -7,7 +7,7 @@ interface ImportMetaEnv {
     readonly VITE_EMULATOR_AUTH_PORT: string;
     readonly VITE_DEBUG: string;
 }
-  
+
 interface ImportMeta {
-    readonly env: ImportMetaEnv
+    readonly env: ImportMetaEnv;
 }

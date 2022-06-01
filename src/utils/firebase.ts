@@ -11,9 +11,9 @@ const db = firebase.firestore();
 const auth = firebase.auth();
 
 if (import.meta.env.MODE === 'development' && import.meta.env.VITE_DEBUG === 'true') {
-  db.useEmulator(import.meta.env.VITE_EMULATOR_HOST, import.meta.env.VITE_EMULATOR_FIRESTORE_PORT);
-  auth.useEmulator(`http://${import.meta.env.VITE_EMULATOR_HOST}:${import.meta.env.VITE_EMULATOR_AUTH_PORT}`);
-  // firebase.firestore.setLogLevel('debug');
+    db.useEmulator(import.meta.env.VITE_EMULATOR_HOST, import.meta.env.VITE_EMULATOR_FIRESTORE_PORT);
+    auth.useEmulator(`http://${import.meta.env.VITE_EMULATOR_HOST}:${import.meta.env.VITE_EMULATOR_AUTH_PORT}`);
+    // firebase.firestore.setLogLevel('debug');
 }
 
 export { db, auth };

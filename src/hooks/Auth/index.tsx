@@ -5,33 +5,33 @@ import { AuthContextData, AuthProviderProps } from './types';
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-const AuthProvider: React.FC<AuthProviderProps> = ({ children }: AuthProviderProps) => {
-  const {
-    authState: { user, isUserDataPresent },
-    signOut,
-    signIn,
-  } = useLogic();
-  const contextValue = useMemo(
-    () => ({
-      user,
-      isUserDataPresent,
-      signOut,
-      signIn,
-    }),
-    [user, isUserDataPresent, signIn, signOut],
-  );
+function AuthProvider({ children }: AuthProviderProps) {
+    const {
+        authState: { user, isUserDataPresent },
+        signOut,
+        signIn,
+    } = useLogic();
+    const contextValue = useMemo(
+        () => ({
+            user,
+            isUserDataPresent,
+            signOut,
+            signIn,
+        }),
+        [user, isUserDataPresent, signIn, signOut],
+    );
 
-  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
-};
+    return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
+}
 
 function useAuth(): AuthContextData {
-  const context = useContext(AuthContext);
+    const context = useContext(AuthContext);
 
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
+    if (!context) {
+        throw new Error('useAuth must be used within an AuthProvider');
+    }
 
-  return context;
+    return context;
 }
 
 export { AuthProvider, useAuth };

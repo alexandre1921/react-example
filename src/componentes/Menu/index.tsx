@@ -1,21 +1,25 @@
-import { Menu as MenuContainer, MenuItem, MenuButton, MenuList, IconButton, Button, Box, Spacer } from "@chakra-ui/react";
-import { HamburgerIcon, AddIcon, ExternalLinkIcon, RepeatIcon } from "@chakra-ui/icons";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/Auth";
+import {
+    Menu as MenuContainer,
+    MenuItem,
+    MenuButton,
+    MenuList,
+    IconButton,
+    Button,
+    Box,
+    Spacer,
+} from '@chakra-ui/react';
+import { HamburgerIcon, AddIcon, ExternalLinkIcon, RepeatIcon } from '@chakra-ui/icons';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/Auth';
 
 function Menu() {
     const { signOut } = useAuth();
-    let navigate = useNavigate();
+    const navigate = useNavigate();
 
     return (
-        <Box display={"flex"}>
+        <Box display="flex">
             <MenuContainer>
-                <MenuButton
-                    as={IconButton}
-                    aria-label='Options'
-                    icon={<HamburgerIcon />}
-                    variant='outline'
-                />
+                <MenuButton as={IconButton} aria-label="Options" icon={<HamburgerIcon />} variant="outline" />
                 <MenuList>
                     <MenuItem icon={<AddIcon />} onClick={() => navigate('/')}>
                         Vehicles
@@ -28,10 +32,12 @@ function Menu() {
                     </MenuItem>
                 </MenuList>
             </MenuContainer>
-            <Spacer></Spacer>
-            <Button colorScheme={"red"} onClick={() => signOut()}>Deslogar</Button>
+            <Spacer />
+            <Button colorScheme="red" onClick={() => signOut()}>
+                Deslogar
+            </Button>
         </Box>
-    )
+    );
 }
 
 export default Menu;
